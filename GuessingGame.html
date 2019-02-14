@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function linearSearch(arr, key) {
+        for (let i = 0, l = arr.length; i < l; i++) {
+            if (arr[i] == key) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function binarySearch(arr, key) {
+        let lower = 0;
+        let upper = arr.length - 1;
+        let mid = 0;
+        let found = false;
+        let location = -1;
+        while (lower <= upper && !found) {
+            mid = Math.floor((upper + lower)/2);
+            if (arr[mid] == key) {
+                found = true;
+                location = mid + 1;
+            } else if (arr[mid] > key) {
+                upper = mid -1;
+            } else {
+                lower = mid + 1;
+            }
+        }
+        return location;
+    }
+    function bubbleSort(arr) {
+        for (let i = 0, l = arr.length; i < l; i++) {
+            for (let j =  0; j < l - i - 1; j++){
+                if (arr[j] > arr[j+1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+    var nums = [];
+    for (let i = 0; i < 5; i++) {
+        nums[i] = Math.floor(Math.random() * 101);
+    }
+    bubbleSort(nums);
+    var found = false;
+    var count = 1;
+    var key = parseInt(prompt("Enter secret number: "));
+    var position = -1;
+    while (!found) {
+        let guess = parseInt(prompt("Enter your guess:"));
+        if (guess < key) {
+            alert(count + " guess: " + guess +"; Answer: too low");
+        } else if ( guess > key) {
+            alert(count + " guess: " + guess +"; Answer: too high");
+        } else {
+            alert(count + " guess: " + guess +"; Answer: Correct");
+            found = true;
+        }
+    }
+
+</script>
+</body>
+</html>
